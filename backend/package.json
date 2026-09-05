@@ -1,0 +1,40 @@
+{
+  "name": "linkedin-auto-apply-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.11.0",
+    "mongoose": "^8.9.5",
+    "multer": "^2.0.2",
+    "natural": "^8.1.0",
+    "pdf-parse": "^2.4.5",
+    "pdf-to-img": "^4.4.0",
+    "playwright": "^1.49.1",
+    "tesseract.js": "^5.1.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "tesseract.js@5.1.1": true,
+    "canvas@3.1.0": true,
+    "fsevents@2.3.2": true,
+    "fsevents@2.3.3": true
+  }
+}
