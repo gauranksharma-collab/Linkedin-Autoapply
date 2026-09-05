@@ -27,6 +27,8 @@ app.use("/api/question-bank", require("./routes/questionBank"));
 app.use("/api/pending-questions", require("./routes/pendingQuestions"));
 app.use("/api/runner", require("./routes/runner"));
 
+app.get("/", (_req, res) => res.json({ ok: true, message: "linkedin-auto-apply backend is live" }));
+
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 app.use(errorHandler);
