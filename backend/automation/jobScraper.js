@@ -56,7 +56,7 @@ async function scrapeNewJobs(userId, overrides = {}, onLog = () => {}) {
   const page = await browserPool.getPage(userId);
 
   if (!isLinkedInLoggedInUrl(page.url())) {
-    await page.goto("https://www.linkedin.com/feed/", { waitUntil: "domcontentloaded", timeout: 15000 });
+    await page.goto("https://www.linkedin.com/feed/", { waitUntil: "domcontentloaded", timeout: 45000 });
   }
   if (!isLinkedInLoggedInUrl(page.url())) {
     throw new Error("Not logged into LinkedIn — connect via the live view first");

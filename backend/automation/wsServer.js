@@ -40,7 +40,7 @@ function attachWsServer(httpServer) {
 
       if (!page.url().startsWith("https://www.linkedin.com")) {
         await page
-          .goto("https://www.linkedin.com/login", { waitUntil: "domcontentloaded", timeout: 15000 })
+          .goto("https://www.linkedin.com/login", { waitUntil: "domcontentloaded", timeout: 45000 })
           .catch((err) => send({ type: "error", message: `Navigation failed: ${err.message}` }));
       }
 

@@ -18,7 +18,7 @@ router.get("/status", async (req, res, next) => {
     const page = await browserPool.getPage(req.userId);
     await page.goto("https://www.linkedin.com/feed/", {
       waitUntil: "domcontentloaded",
-      timeout: 15000,
+      timeout: 45000,
     });
     const currentUrl = page.url();
     res.json({ loggedIn: isLinkedInLoggedInUrl(currentUrl), url: currentUrl });

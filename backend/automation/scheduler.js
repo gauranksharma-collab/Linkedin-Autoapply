@@ -22,7 +22,7 @@ async function tick() {
       const page = await browserPool.getPage(userId);
       if (!isLinkedInLoggedInUrl(page.url())) {
         await page
-          .goto("https://www.linkedin.com/feed/", { waitUntil: "domcontentloaded", timeout: 15000 })
+          .goto("https://www.linkedin.com/feed/", { waitUntil: "domcontentloaded", timeout: 45000 })
           .catch(() => {});
       }
       if (!isLinkedInLoggedInUrl(page.url())) continue;
