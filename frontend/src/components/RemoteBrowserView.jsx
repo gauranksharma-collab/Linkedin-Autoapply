@@ -13,6 +13,9 @@ export default function RemoteBrowserView({ onStatus }) {
   const [focused, setFocused] = useState(false);
   const [cursor, setCursor] = useState(null); // { xPct, yPct } in display space
   const [pressed, setPressed] = useState(false);
+  const [isTouch] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
+  );
 
   useEffect(() => {
     let closed = false;
@@ -67,10 +70,14 @@ export default function RemoteBrowserView({ onStatus }) {
   function handleMouseMove(e) {
     const rect = imgRef.current.getBoundingClientRect();
     // Update the local cursor overlay on every event — instant, no network round trip.
-    setCursor({
-      xPct: ((e.clientX - rect.left) / rect.width) * 100,
-      yPct: ((e.clientY - rect.top) / rect.height) * 100,
-    });
+    // Skipped on touch devices: taps synthesize a mousemove at the tap point, which would
+    // otherwise leave a stray cursor icon on screen with no real mouse to move it away.
+    if (!isTouch) {
+      setCursor({
+        xPct: ((e.clientX - rect.left) / rect.width) * 100,
+        yPct: ((e.clientY - rect.top) / rect.height) * 100,
+      });
+    }
 
     // Throttle what actually goes over the wire so a flood of mousemove events
     // can't back up behind mousedown/mouseup/keys on the server.
