@@ -109,10 +109,10 @@ export default function Dashboard() {
   const failedOrDismissedCount = jobs.filter((j) => j.status === "failed" || j.status === "dismissed").length;
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <h1 className="text-lg font-semibold text-white">Dashboard</h1>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {failedOrDismissedCount > 0 && (
             <button
               onClick={handleRetryAllFailed}
@@ -147,7 +147,7 @@ export default function Dashboard() {
       </div>
 
       {settings && !settings.auto_apply_enabled && (
-        <div className="rounded-lg bg-yellow-500/10 text-yellow-400 text-sm px-4 py-3 flex items-center justify-between gap-4">
+        <div className="rounded-lg bg-yellow-500/10 text-yellow-400 text-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <span>
             Auto-apply is off — jobs get scraped but nothing gets applied to. Once it's on, this
             runs by itself in the background roughly every 15 minutes, all day, with no need to
@@ -156,7 +156,7 @@ export default function Dashboard() {
           <button
             onClick={handleEnableAutoApply}
             disabled={togglingAutoApply}
-            className="shrink-0 rounded-lg bg-yellow-500 text-black hover:bg-yellow-400 transition-colors px-3 py-1.5 text-xs font-medium disabled:opacity-50"
+            className="self-start sm:shrink-0 rounded-lg bg-yellow-500 text-black hover:bg-yellow-400 transition-colors px-3 py-1.5 text-xs font-medium disabled:opacity-50"
           >
             {togglingAutoApply ? "Enabling..." : "Turn on auto-apply"}
           </button>
@@ -164,7 +164,7 @@ export default function Dashboard() {
       )}
 
       {settings && (
-        <div className="rounded-lg bg-white/5 border border-white/10 text-sm px-4 py-3 flex items-center justify-between gap-4">
+        <div className="rounded-lg bg-white/5 border border-white/10 text-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <span className="text-white/60">
             {settings.review_before_submit
               ? "Review before submit is on — filled applications pause here for your confirmation before the real submit click."
@@ -172,7 +172,7 @@ export default function Dashboard() {
           </span>
           <button
             onClick={handleToggleReview}
-            className="shrink-0 rounded-lg bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 text-xs font-medium"
+            className="self-start sm:shrink-0 rounded-lg bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 text-xs font-medium"
           >
             {settings.review_before_submit ? "Skip review (auto-submit)" : "Turn review back on"}
           </button>
@@ -215,7 +215,7 @@ export default function Dashboard() {
 
           return (
             <div key={job._id} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
                   <a href={job.url} target="_blank" rel="noreferrer" className="text-white hover:underline font-medium">
                     {job.title}
@@ -224,7 +224,7 @@ export default function Dashboard() {
                     {[job.company, job.location, job.easy_apply ? "Easy Apply" : null].filter(Boolean).join(" · ")}
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-wrap">
                   <span
                     className={`text-xs uppercase ${
                       displayStatus === "awaiting_review" || displayStatus === "awaiting_answer"
@@ -291,7 +291,7 @@ export default function Dashboard() {
               )}
 
               {appStatus === "awaiting_answer" && (
-                <div className="rounded-lg bg-yellow-500/10 p-3 flex items-center justify-between">
+                <div className="rounded-lg bg-yellow-500/10 p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <p className="text-xs text-white/50">Paused on a new question it hasn't seen before.</p>
                   <Link to="/pending" className="text-xs text-blue-400 hover:text-blue-300 underline">
                     Answer it

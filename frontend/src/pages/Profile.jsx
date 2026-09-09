@@ -53,15 +53,15 @@ export default function Profile() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
       <h1 className="text-lg font-semibold text-white">Your Profile</h1>
 
-      <form onSubmit={handleUpload} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl p-4">
+      <form onSubmit={handleUpload} className="flex flex-col sm:flex-row sm:items-center gap-3 bg-white/5 border border-white/10 rounded-xl p-4">
         <input
           type="file"
           accept=".pdf,.docx"
           onChange={(e) => setFile(e.target.files[0])}
-          className="text-sm text-white/70"
+          className="text-sm text-white/70 max-w-full"
         />
         <button
           type="submit"
@@ -94,7 +94,7 @@ export default function Profile() {
       )}
 
       {profile && (
-        <div className="grid grid-cols-2 gap-4 bg-white/5 border border-white/10 rounded-xl p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white/5 border border-white/10 rounded-xl p-6">
           {[
             ["full_name", "Full name"],
             ["email", "Email"],
@@ -105,7 +105,7 @@ export default function Profile() {
             ["expected_ctc", "Expected CTC"],
             ["notice_period", "Notice period"],
           ].map(([field, label]) => (
-            <label key={field} className="text-sm text-white/70 space-y-1">
+            <label key={field} className="block text-sm text-white/70 space-y-1">
               <span>{label}</span>
               <input
                 value={profile[field] || ""}
@@ -114,7 +114,7 @@ export default function Profile() {
               />
             </label>
           ))}
-          <div className="col-span-2">
+          <div className="sm:col-span-2">
             <button
               onClick={handleSave}
               className="rounded-lg bg-white/10 hover:bg-white/20 transition-colors px-4 py-2 text-sm font-medium"
@@ -124,7 +124,7 @@ export default function Profile() {
           </div>
 
           {profile.skills_json?.length > 0 && (
-            <div className="col-span-2 text-sm text-white/70">
+            <div className="sm:col-span-2 text-sm text-white/70">
               <p className="mb-2">Skills (from résumé)</p>
               <div className="flex flex-wrap gap-2">
                 {profile.skills_json.map((skill) => (

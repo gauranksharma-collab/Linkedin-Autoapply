@@ -52,17 +52,17 @@ export default function ApplicationHistory() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
       <h1 className="text-lg font-semibold text-white">Application History</h1>
       {applications.length === 0 && <p className="text-sm text-white/40">No applications yet.</p>}
       <div className="space-y-2">
         {applications.map((app) => (
-          <div key={app._id} className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+          <div key={app._id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
             <div>
               <p className="text-white text-sm">{app.job_listing_id?.title || "Job removed"}</p>
               <p className="text-xs text-white/40">{app.job_listing_id?.company}</p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <span className={`text-xs uppercase ${STATUS_COLORS[app.status] || "text-white/40"}`}>
                 {app.status.replace("_", " ")}
               </span>

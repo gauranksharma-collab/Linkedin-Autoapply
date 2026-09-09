@@ -32,10 +32,10 @@ export default function QuestionBank() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
       <h1 className="text-lg font-semibold text-white">Question Bank</h1>
 
-      <form onSubmit={handleAdd} className="flex gap-2">
+      <form onSubmit={handleAdd} className="flex flex-col sm:flex-row gap-2">
         <input
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
@@ -56,19 +56,21 @@ export default function QuestionBank() {
       <div className="space-y-2">
         {entries.length === 0 && <p className="text-sm text-white/40">No saved answers yet.</p>}
         {entries.map((entry) => (
-          <div key={entry._id} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+          <div key={entry._id} className="flex flex-col sm:flex-row sm:items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
             <div className="flex-1">
               <p className="text-sm text-white">{entry.question_original}</p>
               <p className="text-xs text-white/40">used {entry.times_used}x</p>
             </div>
-            <input
-              defaultValue={entry.answer}
-              onBlur={(e) => e.target.value !== entry.answer && handleUpdate(entry._id, e.target.value)}
-              className="w-40 rounded-lg bg-white/10 border border-white/10 px-3 py-1.5 text-sm outline-none focus:border-white/30"
-            />
-            <button onClick={() => handleDelete(entry._id)} className="text-xs text-white/40 hover:text-red-400 transition-colors">
-              Delete
-            </button>
+            <div className="flex items-center gap-3">
+              <input
+                defaultValue={entry.answer}
+                onBlur={(e) => e.target.value !== entry.answer && handleUpdate(entry._id, e.target.value)}
+                className="w-full sm:w-40 rounded-lg bg-white/10 border border-white/10 px-3 py-1.5 text-sm outline-none focus:border-white/30"
+              />
+              <button onClick={() => handleDelete(entry._id)} className="text-xs text-white/40 hover:text-red-400 transition-colors shrink-0">
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>

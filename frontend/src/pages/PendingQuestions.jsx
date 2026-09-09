@@ -25,7 +25,7 @@ export default function PendingQuestions() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
       <h1 className="text-lg font-semibold text-white">Pending Questions</h1>
       <p className="text-sm text-white/50">
         These are new application questions we haven't seen before. Answer once and it's saved for
@@ -37,7 +37,7 @@ export default function PendingQuestions() {
         {questions.map((q) => (
           <div key={q._id} className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
             <p className="text-white text-sm">{q.question_original}</p>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 value={answers[q._id] || ""}
                 onChange={(e) => setAnswers((a) => ({ ...a, [q._id]: e.target.value }))}
